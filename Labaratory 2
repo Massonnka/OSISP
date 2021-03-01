@@ -7,6 +7,7 @@ do echo $1
 done
 --------------------------
 masson@masson-VirtualBox:~$ ./Ifind.sh ~masson *.txt
+masson@masson-VirtualBox:~$ 
 
 -------- Idel.sh ---------
 
@@ -19,6 +20,7 @@ rm $1
 done
 ---------------------------
 masson@masson-VirtualBox:~$ ./Idel.sh ~masson *.txt
+masson@masson-VirtualBox:~$ 
 
 -------- Icopy.sh ---------
 
@@ -32,6 +34,7 @@ cp $i $4
 done
 ---------------------------
 masson@masson-VirtualBox:~$ ./Icopy.sh /Primer1 /Primer2
+masson@masson-VirtualBox:~$ 
 
 -------- Imove.sh ---------
 
@@ -43,6 +46,7 @@ echo $i
 mv $i $2
 done
 masson@masson-VirtualBox:~$ ./Icopy /Primer1 /Primer2 *aaa.txt
+masson@masson-VirtualBox:~$ 
 
 -------- Istart.sh ---------
 
@@ -54,3 +58,5 @@ exit 0
 -----------------------------------------------
 masson@masson-VirtualBox:~$ ./Start.sh
 start
+end
+masson@masson-VirtualBox:~$ 
