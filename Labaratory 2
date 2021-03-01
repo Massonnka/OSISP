@@ -5,6 +5,8 @@ array=$(find $1 -name $2)
 for i in ${array[@]};
 do echo $1
 done
+--------------------------
+masson@masson-VirtualBox:~$ ./Ifind.sh ~masson *.txt
 
 -------- Idel.sh ---------
 
@@ -15,6 +17,8 @@ do
 echo $1
 rm $1
 done
+---------------------------
+masson@masson-VirtualBox:~$ ./Idel.sh ~masson *.txt
 
 -------- Icopy.sh ---------
 
@@ -26,6 +30,9 @@ echo $i
 cp $i $3
 cp $i $4
 done
+---------------------------
+masson@masson-VirtualBox:~$ ./Icopy.sh /Primer1 /Primer2
+
 -------- Imove.sh ---------
 
 #!/bin/bash
@@ -35,12 +42,15 @@ do
 echo $i
 mv $i $2
 done
+masson@masson-VirtualBox:~$ ./Icopy /Primer1 /Primer2 *aaa.txt
 
 -------- Istart.sh ---------
 
 #!/bin/bash
 echo start
-find . -name \* -not -name "Istart.sh" -not -name \*\~ -not -name \.\* exec ./'{}'\;
+find . -name \* -not -name "Istart.sh" -not -name \*\~ -not -name \.\* -exec ./'{}'\;
 echo end
 exit 0
 -----------------------------------------------
+masson@masson-VirtualBox:~$ ./Start.sh
+start
