@@ -1,0 +1,46 @@
+-------- Ifind.sh --------
+
+#!/bin/bash
+array=$(find $1 -name $2)
+for i in ${array[@]};
+do echo $1
+done
+
+-------- Idel.sh ---------
+
+#!/bin/bash
+array=$(find  $1 -name $2)
+for i in ${array[@]};
+do
+echo $1
+rm $1
+done
+
+-------- Icopy.sh ---------
+
+#!/bin/bash
+array=$(find  $1 -name $2)
+for i in ${array[@]};
+do
+echo $i
+cp $i $3
+cp $i $4
+done
+-------- Imove.sh ---------
+
+#!/bin/bash
+array=$(find $1 -name *[0-9]*[0-9]*[0-9]*[0-9]*)
+for i in ${array[@]};
+do
+echo $i
+mv $i $2
+done
+
+-------- Istart.sh ---------
+
+#!/bin/bash
+echo start
+find . -name \* -not -name "Istart.sh" -not -name \*\~ -not -name \.\* exec ./'{}'\;
+echo end
+exit 0
+-----------------------------------------------
