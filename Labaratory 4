@@ -1,0 +1,95 @@
+---------------- main.c ----------------
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+
+pid_t pc2, pc3, pc4, pc5, pc6, pc7;
+
+void Process(void) {
+	pc2 = fork();
+	if (pc2 == 0) {
+		printf("[PROCESS 2] Процесс с %d породил процесс %d\n", getppid(), getpid());
+		printf("[PROCESS 2] Процесс с %d и %d родителя завершает работу\n", getpid(), getppid());
+		exit(0);
+	}
+	wait(0);
+	pc3 = fork();
+	if (pc3 == 0) {
+		printf("[PROCESS 3] Процесс с %d породил процесс %d\n", getppid(), getpid());
+		pc5 = fork();
+		if (pc5 == 0) {
+			printf("[PROCESS 5] Процесс с %d породил процесс %d\n", getppid(), getpid());
+			pc6 = fork();
+			if (pc6 == 0) {
+				printf("[PROCESS 6] Процесс с %d породил процесс %d\n\n", getppid(), getpid());
+				if (!vfork()) {
+					execl("proc", "0", NULL);
+				}
+				wait(0);
+				printf("\n[PROCESS 6] Процесс с %d и %d родителя завершает работу\n", getpid(), getppid());
+				exit(0);
+			}
+			wait(0);
+			printf("[PROCESS 5] Процесс с %d и %d родителя завершает работу\n", getpid(), getppid());
+			exit(0);
+		}
+		wait(0);
+		printf("[PROCESS 3] Процесс с %d и %d родителя завершает работу\n", getpid(), getppid());
+		exit(0);
+	}
+	wait(0);
+	pc4 = fork();
+	if (pc4 == 0) {
+		printf("[PROCESS 4] Процесс с %d породил процесс %d\n", getppid(), getpid());
+		pc7 = fork();
+		if (pc7 == 0) {
+			printf("[PROCESS 7] Процесс с %d породил процесс %d\n", getppid(), getpid());
+			printf("[PROCESS 7] Процесс с %d и %d родителя завершает работу\n", getpid(), getppid());
+			exit(0);
+		}
+		wait(0);
+		printf("[PROCESS 4] Процесс с %d и %d родителя завершает работу\n", getpid(), getppid());
+		exit(0);
+	}
+}
+
+int main(void) {
+	system("clear");
+
+	printf("[PROCESS 1] PID is  %d\n", getpid());
+	printf("[PROCESS 1] PPID is %d\n", getppid());
+
+	printf("\n------------------------\n\n");
+	printf("PROCESS TREE - [0111254]\n");
+	printf("[PROCESS 1]\n");
+	printf("|---[PROCESS 2]\n");
+	printf("|---[PROCESS 3]\n");
+	printf("|---|---[PROCESS 5]\n");
+	printf("|---|---|---[PROCESS 6]\n");
+	printf("|---[PROCESS 4]\n");
+	printf("|---|---[PROCESS 7]\n");
+	printf("\n------------------------\n\n");
+
+	Process();
+	wait(0);
+
+	exit(0);
+}
+
+--------------- proc.c ---------------------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+	char * arg[] = { "free", "-m", NULL };
+	execvp(arg[0], arg);
+	execv("/bin/free", arg);
+	return 1;
+} 
+
+--------------------------------------------
