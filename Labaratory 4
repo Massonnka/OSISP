@@ -93,3 +93,9 @@ int main(void) {
 } 
 
 --------------------------------------------
+
+masson@masson-VirtualBox:~$ touch main.c
+masson@masson-VirtualBox:~$ gcc -c main.c
+masson@masson-VirtualBox:~$ gcc -o main main.c
+masson@masson-VirtualBox:~$ chmod u+x main
+masson@masson-VirtualBox:~$ ./main
