@@ -42,7 +42,7 @@ do
 echo $i
 mv $i $2
 done
-masson@masson-VirtualBox:~$ ./Icopy /Primer1 /Primer2 *aaa.txt
+masson@masson-VirtualBox:~$ ./Imove.sh /Primer1 /Primer2 *aaa.txt
 
 -------- Istart.sh ---------
 
